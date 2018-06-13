@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    .wrapper{
+        width: 50%;
+        margin: 100px auto;
+        border: 1px solid #ccc;
+    }
+    .search{
+        width: 100%;
+        height: 60px;
+    }
+    .search input{
+        margin-top: 10px;
+        margin-left: 20px;
+        padding: 10px;
+        width: 40%;
+        /* border-radius: 5px; */
+    }
+    .search .sex{
+        display: inline-block;
+        height: 100%;
+        width: 40%
+    }
+    .search .sex span{
+        display: inline-block;
+        padding: 10px 20px;
+        color: orange;
+    }
+    .search span.select{
+        color: white;
+        border-radius: 5px;
+        background-color: orange;
+    }
+    .search-list{
+        margin: 0 20px;
+    }
+    .search-list .list-item{
+        width: 100%;
+        border-bottom: 1px solid #ccc;
+        margin: 5px;
+    }
+    .list-item .user{
+        float: left;
+    }
+    .list-item .des{
+        float: left;
+    }
+    .list-item::after{
+        display: block;
+        content: '';
+        clear: both;
+    }
+    .list-item .des span{
+        display: block;
+        margin-left: 10px;
+        font-size: 12px;
+        line-height: 16px;
+    }
+</style>
+<body>
+    <div class="wrapper">
+        <div class="search">
+            <input type="text" class="inp" placeholder="请输入用户名">
+            <div class="sex">
+                <span data-sex ='male'>Male</span>
+                <span data-sex ='female'>Female</span>
+                <span class="select" data-sex ='all'>All</span>
+            </div>
+        </div>
+        <div class="search-list">
+        </div>
+    </div>
+</body>
+<script>
+    var personArr = [
+        {name:'王刚',src:'image/1.png',des:'颈椎不好',sex:'m'},
+        {name:'ss',src:'image/2.png',des:'妇人王文合肥',sex:'m'},
+        {name:'11',src:'image/3.png',des:'dfvdf',sex:'m'},
+        {name:'334',src:'image/4.png',des:'颈方法eve阿VB',sex:'f'},
+        {name:'ffre',src:'image/5.png',des:'fear',sex:'f'},
+        {name:'sre',src:'image/6.png',des:'热三个奶爸',sex:'m'},
+        {name:'王fr刚',src:'image/7.png',des:'焐热更好5 ',sex:'f'},
+    ];
+    var inp = document.getElementsByClassName('inp')[0];
+    var searchList = document.getElementsByClassName('search-list')[0];
+    var sex = document.getElementsByClassName('sex')[0];
+    var val = '';
+    var sexMark = 'all';
+    sex.addEventListener('click',function(e){
+        var show = [],
+            sex = e.target.dataset.sex,
+            select = document.getElementsByClassName('select')[0];
+        if(sex){
+            if(sex == 'male'){
+                    sexMark = 'm';
+                }else if(sex == 'female'){
+                    sexMark = 'f';
+                }else if(sex == 'all'){
+                    sexMark = '';
+                }
+            show = matchSex(personArr,sexMark);
+            show = matchName(show,val);
+            showList(show,searchList);
+            select.className = '';
+            e.target.className = 'select';   
+        }
+    })
+    inp.addEventListener('keyup',function(e){
+        var show;
+        window.val = e.target.value;
+            show = matchSex(personArr,sexMark);
+            show = matchName(show,val);
+            showList(show,searchList);
+    })
+    function matchName(userList,val){
+        var showList = [];
+        userList.forEach(function(ele,index){
+            if(ele.name.indexOf(val) != -1){
+                showList.push(ele);
+            }
+        });
+        return showList;
+    }
+    function matchSex(userList,sex){
+        var showList = [];
+        userList.forEach(function(ele,index){
+            if(ele.sex == sex){
+                showList.push(ele);
+            }
+            if(!sex || sex == 'all'){
+                showList.push(ele);
+            }
+        })
+        return  showList;
+    }
+    function showList(list,dom){
+        var str = '';
+        list.forEach(function(ele,index){
+            str +='<div class="list-item">\
+                    <div class="user">\
+                        <img src="' + ele.src + '" alt="user">\
+                    </div>\
+                    <div class="des">\
+                        <span>' + ele.name + '</span>\
+                        <span>' + ele.des + '</span>\
+                    </div>\
+                 </div>';
+        })
+        dom.innerHTML = str;
+    }
+</script>
+</html>
+

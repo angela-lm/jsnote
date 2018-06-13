@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>jsadd</title>
+</head>
+<body>
+    <div class="demodemodemo  demo1">
+        <ul class="    demo        type            999">
+            <li>Doctype 渲染模式： 标准模式 怪异模式（混杂模式）</li>
+            <li>label标签</li>
+            <label for="demo">username</label>
+            <input type="text" id="demo">
+            <li>图片预加载  ______ 图片懒加载</li>
+            <li>文档碎片</li>
+            <li>cdn 缓存服务器</li>
+            <li>typeof(new Array)._proto_.constructor() ---> object</li>
+        </ul>
+    </div>
+</body>
+<script>
+    // var oImg = new Image();
+    // oImg.src = '../1.png';
+    // oImg.onload = function(){
+    //     document.body.appendChild(oImg);
+    // } 
+    // var i = Math.random();
+    // var ofrag = document.createDocumentFragment();
+
+
+
+    Document.prototype.getByClassName = function(className){
+        var arr = document.getElementsByTagName('*');
+        var allArr = Array.prototype.slice.call(arr,0);
+        var filterArr = [];
+        function dealClass(dom){
+            var reg = /\s+/g;
+            var arrClassName = dom.className.replace(reg,' ').trim();
+            return arrClassName;
+        }
+        allArr.forEach(function(ele,index){
+            var itemClassArr = dealClass(ele).split(' ');
+            console.log(itemClassArr);
+            for(var i = 0; i < itemClassArr.length;i++){
+                if(itemClassArr[i] == className){
+                    filterArr.push(ele);
+                    break;
+                }
+            }
+        })
+        return filterArr;
+    }
+    // var i = document.getByClassName('demo')[0];
+    // i.style.backgroundColor = 'red';
+</script>
+</html>

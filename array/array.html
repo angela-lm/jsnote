@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>array</title>
+</head>
+<body>
+    <div>
+        <h3>foreach 循环遍历数组</h3>
+
+    </div>
+</body>
+<script>
+    var arr = [
+        12345,
+        {name:'angela'},
+        {name:'yangmengjuan'},
+        {name:'hello world'},
+        {name:'this is a shit'},
+        [123,23,456,789],
+        [123,23,456,789]];
+
+    // // foreach
+    //     arr.forEach(function(ele,index){
+    //         console.log(ele);
+    //     })
+    //     // 源码
+    //     Array.prototype.myForEach = function(func){
+    //         for(var i = 0; i < this.length;i++){
+    //             func(this[i],i);
+    //         }
+
+    //     }
+    //     arr.myForEach(function(ele,index){
+    //         console.log(ele,index);
+    //     })
+
+    // filter 筛选 返回新的数组 返回值为true插入到新数组中
+    // var newArr = arr.filter(function(ele,index){
+    //     var newA = [];
+    //     if(index % 2 == 0){
+    //         newA.push(ele);
+    //         return newA;
+    //     }
+    // })
+    // console.log(newArr);
+        // // 源码
+        // Array.prototype.myFilter = function(func){
+        //     var newArr = [];
+        //     for(var i = 0; i < this.length; i++){
+        //         var target= {};
+        //         if(func(this[i],i)){
+        //             if(this[i] && typeof this[i] == 'object'){
+        //                 deepClone(target,this[i]);
+        //                 newArr.push(target);
+                        
+        //             }else{
+        //                 newArr.push(this[i]);
+        //             }
+        //         }
+        //     }
+        //     return newArr;
+        // }
+        // var newArr = arr.myFilter(function(ele,index){
+        //     var newA = [];
+        //     if(index % 2 == 0){
+        //         newA.push(ele);
+        //         return newA;
+        //     }
+        // })
+        // console.log(newArr);
+    //  map  返回值的集合
+    // var newA = arr.map(function(ele,index){
+    //     return 'this is a map ex'
+    // })
+    // Array.prototype.myMap = function(func){
+    //     var newArr = [];
+    //     for(var i = 0; i <　this.length; i++){
+    //         if(func(this[i],i)){
+    //             newArr.push(func(this[i],i));
+    //         }
+    //     }
+    //     return newArr;
+    // }
+    // var newA = arr.myMap(function(ele,index){
+    //     if(index % 3 == 1){
+    //         return 'this is a map ex'
+    //     }
+    // })
+
+
+    //  reduce 三个参数 prevValue ele index 返回上一个循环遍历的结果
+    // var newArr = arr.reduce(function(prevValue,ele,index){
+    //     return 'index /n';
+    // },'b');
+    // Array.prototype.myReduce = function(func,init){
+    //     var prev = init,
+    //         i = 0,
+    //         len = this.length;
+    //     if(init === undefined){
+    //          prev = this[0];
+    //          i = 1;
+    //     }
+    //     for(i; i < len; i++){
+    //         prev = func(prev,this[i],i);
+    //     }
+    //     return prev;
+    // }
+    // var arr1 = [1,2,3,4,5,7];
+    // var newArr = arr1.reduce(function(prevValue,ele,index){
+    //     return prevValue + ele;
+    // });
+    // var newArr1 = arr1.myReduce(function(prevValue,ele,index){
+    //     return prevValue + ele;
+    // });
+    // console.log(newArr,newArr1);
+    function deepClone(target,origin){
+        var copy,src;
+        if(origin != null){
+            for(var prop in origin){
+                src = target[prop];
+                copy = origin[prop];
+                if(copy && typeof copy == 'object'){
+                    if(Object.prototype.toString.call(copy) == '[object Array]'){
+                        src = src ? src :[];
+                    }else{
+                        src = src ? src : {};
+                    }
+                    target[prop] = deepClone(src,copy);
+                }else{
+                    target[prop] = copy;
+                }
+            }
+        }
+        return target;
+    }
+</script>
+</html>

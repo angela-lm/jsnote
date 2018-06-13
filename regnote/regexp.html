@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>regexp</title>
+</head>
+<body>
+
+</body>
+<script>
+    // \ 转义符号
+    // var str = "ab\\ssidhh\"djdwowdn";
+    // \n 换行
+    // \r 行结束符
+    // \t tab 缩进
+
+    // 正则表达式 ： 匹配字符
+
+    // 两种创建方式 
+    //  / /i /m /g ignore 忽视大小写 执行多行匹配 全局匹配
+    //  ^ 以reg 规则内字符 开头的
+    // var reg　= /abc/;
+    // var str = 'abcdsa';
+    // test()  返回布尔值
+    // match() 返回所有匹配成功结果
+    // var reg = new RegExp('abcd','属性');
+
+    //  \w [0-9 A-z _]
+    //  \W [^/w]
+    //  \d [0-9]
+    //  \D [^/d]
+    //  \s [查找空白字符]
+    //  \S [查找非空白字符]
+    // . 查找单个字符，除了换行和行结束符
+    // \b 匹配单词边界
+    // \B 匹配非单词边界
+    // var str = '12303 4jffhediscnoep32';
+    // var reg = /\w\s/;  
+    // var str = '100000000000';
+    // var reg = /(?=(\B)(\d{3})+$)/g;
+    // str = str.replace(reg,'.');
+    // console.log(str);
+    // 例题
+    // 1 将一个字符串 get-element-by-id 转化成驼峰形式
+    // var str = 'get-element-by-id';
+    // var reg = /-(\w)/g;
+    // str = str.replace(reg,function($,$1){
+    //     return $1.toUpperCase();
+    // })
+    // console.log(str);
+
+    // 2 匹配非零的十进制数
+    // var str = '0000010';
+    // var reg = /[1-9][0-9]*/g;
+    // console.log(reg.exec(str));
+    // console.log(str.match(reg));
+
+    // 3 匹配一年中的十二个月 01 02 12 形式
+    // var str = '12'; //可能的形式 1 - 12 01 - 09 
+    // var reg = /^(0?[1-9]|1[0-2])$/g;
+    // console.log(str.match(reg));
+    
+    // 4 匹配qq号 最长为13位
+    // var str = '122999';
+    // var reg = /^[1-9](\d{5,12})$/g;
+    // console.log(str.match(reg));
+
+    // 5 匹配ip地址
+    // var str = "255.255.123";
+    // var reg = /^([0-1]?\d\d?|2[0-4]\d|25[0-5])\.([0-1]?\d\d?|2[0-4]\d|25[0-5])\.([0-1]?\d\d?|2[0-4]\d|25[0-5])$/g;
+    // console.log(str.match(reg));
+
+    // 6 匹配用尖括号括起来的以a头的字符串
+    // var str = '<a href="http://www.baidu.com"></a>';
+    // var reg = /^<a[\w\W]*/g;
+    // console.log(str.match(reg));
+
+    // 7 分割数字每三个以一个逗号划分
+    // var str = '1203039430080';
+    // var reg = /(?=(\B)(\d{3})+$)/g;
+    // str = str.replace(reg,',');
+    // console.log(str);
+</script>
+</html>
